@@ -22,8 +22,8 @@ public class CustomerManager {
 
     @PersistenceContext(unitName = "customerPU")
     private EntityManager em;
-    @Resource
-    private javax.transaction.UserTransaction utx;
+    
+    
     public List<Customer> getAllCustomers() {  
        Query query = em.createNamedQuery("Customer.findAll");
       return query.getResultList();  
@@ -33,15 +33,8 @@ public class CustomerManager {
       return em.merge(customer);  
     }  
 
-    public void persist(Object customer) {
-        try {
-            utx.begin();
-            em.persist(customer);
-            utx.commit();
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
-            throw new RuntimeException(e);
-        }
+    public void persist(Customer customer) {
+       em.persist(customer);
     }
     
 }
