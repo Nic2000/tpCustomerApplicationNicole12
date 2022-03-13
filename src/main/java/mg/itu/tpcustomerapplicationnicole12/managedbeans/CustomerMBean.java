@@ -19,7 +19,7 @@ import mg.itu.tpcustomerapplicationnicole12.session.CustomerManager;
 @Named(value = "customerMBean")
 @ViewScoped
 public class CustomerMBean implements Serializable {
-    private List<Customer> customerList;  
+    private List<Customer> customers;  
     @EJB
     private CustomerManager customerManager;
 
@@ -30,10 +30,10 @@ public class CustomerMBean implements Serializable {
     public CustomerMBean() {
     }
     public List<Customer> getCustomers() {
-        if (customerList == null) {
-          customerList = customerManager.getAllCustomers();
+        if (customers == null) {
+          customers = customerManager.getAllCustomers();
         }
-    return customerList;
+    return customers;
     }  
     
 }
